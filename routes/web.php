@@ -21,6 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::middleware('auth')->group(function () {
+
+
 // HOME
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -32,3 +36,5 @@ Route::get('task/{hash}', [TaskController::class, 'edit'])->name('tasks.edit');
 Route::get('task/show/{hash}', [TaskController::class, 'show'])->name('tasks.show');
 Route::put('task/{hash}', [TaskController::class, 'update'])->name('tasks.update');
 Route::delete('task/{hash}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
+});
