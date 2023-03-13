@@ -10,6 +10,9 @@
 
     <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/css/default/app.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/plugins/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
+          rel="stylesheet"/>
 
     {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
 
@@ -44,27 +47,6 @@
                 </form>
             </div>
 
-
-            <div class="navbar-item navbar-user dropdown">
-                <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-
-                    <span>
-							<span class="d-none d-md-inline">{{ __('Setup') }}</span>
-							<b class="caret"></b>
-						</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end me-1">
-                    <a href="#" class="dropdown-item">Edit Profile</a>
-                    <a href="#" class="dropdown-item d-flex align-items-center">
-                        Inbox
-                        <span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
-                    </a>
-                    <a href="#" class="dropdown-item">Calendar</a>
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Log Out</a>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -84,11 +66,11 @@
                         <div class="menu-profile-info">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </div>
                                 <div class="menu-caret ms-auto"></div>
                             </div>
-                            <small>Frontend developer</small>
+                            <small>{{ Auth::user()->department }}</small>
                         </div>
                     </a>
                 </div>
@@ -96,21 +78,18 @@
                     <div class="menu-item pt-5px">
                         <a href="#" class="menu-link">
                             <div class="menu-icon"><i class="fa fa-cog"></i></div>
-                            <div class="menu-text">Settings</div>
+                            <div class="menu-text">{{ __('mySettings') }}</div>
                         </a>
                     </div>
-                    <div class="menu-item">
-                        <a href="#" class="menu-link">
-                            <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-                            <div class="menu-text"> Send Feedback</div>
-                        </a>
-                    </div>
+
                     <div class="menu-item pb-5px">
                         <a href="#" class="menu-link">
-                            <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
-                            <div class="menu-text"> Helps</div>
+                            <div class="menu-icon"><i class="fa fa-sign-out"></i></div>
+                            <div class="menu-text"> {{ __('Logout') }}</div>
+
                         </a>
                     </div>
+
                     <div class="menu-divider m-0"></div>
                 </div>
                 <div class="menu-header">Navigation</div>
@@ -118,57 +97,59 @@
 
                 {{-- Dashboard --}}
                 <div class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="{{ route('dashboards.index') }}" class="menu-link">
                         <div class="menu-icon">
                             <i class="fab fa-dashboard"></i>
                         </div>
-                        <div class="menu-text">Dashboard</div>
+                        <div class="menu-text">{{ __('Dashboard') }}</div>
                     </a>
                 </div>
 
-                {{-- Tasks --}}
-                <div class="menu-item has-sub">
+                {{-- Task --}}
+                <div class="menu-item">
+                    <a href="{{ route('tasks.index') }}" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fab fa-tasks"></i>
+                        </div>
+                        <div class="menu-text">Task</div>
+                    </a>
+                </div>
+
+                {{-- mySettings --}}
+                <div class="menu-item">
                     <a href="#" class="menu-link">
                         <div class="menu-icon">
-                            <i class="fa fa-sitemap"></i>
+                            <i class="fab fa-tasks"></i>
                         </div>
-                        <div class="menu-text">Tasks</div>
-                        <div class="menu-caret"></div>
+                        <div class="menu-text">mySettings</div>
                     </a>
-                    <div class="menu-submenu">
-                        <div class="menu-item">
-                            <a href="{{ route('tasks.index') }}" class="menu-link">
-                                <div class="menu-text">Dashboard v1</div>
-                            </a>
-                        </div>
-                    </div>
                 </div>
-                {{-- <div class="menu-item has-sub">
-                     <a href="#" class="menu-link">
-                         <div class="menu-icon">
-                             <i class="fa fa-hdd"></i>
-                         </div>
-                         <div class="menu-text">Email</div>
-                         <div class="menu-badge">10</div>
-                     </a>
-                     <div class="menu-submenu">
-                         <div class="menu-item">
-                             <a href="#" class="menu-link">
-                                 <div class="menu-text">Inbox</div>
-                             </a>
-                         </div>
-                         <div class="menu-item">
-                             <a href="#" class="menu-link">
-                                 <div class="menu-text">Compose</div>
-                             </a>
-                         </div>
-                         <div class="menu-item">
-                             <a href="#" class="menu-link">
-                                 <div class="menu-text">Detail</div>
-                             </a>
-                         </div>
-                     </div>
-                 </div>--}}
+
+
+                {{-- Users --}}
+                <div class="menu-item">
+                    <a href="{{ route('users.index') }}" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fab fa-users"></i>
+                        </div>
+                        <div class="menu-text">Users</div>
+                    </a>
+                </div>
+
+                <hr>
+                {{-- Logout --}}
+                <div class="menu-item">
+                    <a href="{{ route('logout') }}" class="menu-link">
+                        <div class="menu-icon" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <i class="fab fa-sign-out"></i>
+                        </div>
+                        <div class="menu-text">{{ __('Logout') }}</div>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
 
 
                 <div class="menu-item d-flex">
@@ -204,6 +185,22 @@
 
 <script src="{{ ('assets/js/vendor.min.js') }}"></script>
 <script src="{{ ('assets/js/app.min.js') }}"></script>
+
+<script src="{{ ('assets/plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ ('assets/plugins/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ ('assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ ('assets/js/demo/table-manage-responsive.demo.js') }}"></script>
+<script src="{{ ('assets/js/demo/render.highlight.js') }}"></script>
+
+
+
+
+
+<script>
+    $('#datatable').DataTable({
+        responsive: true
+    });
+</script>
 
 </body>
 </html>

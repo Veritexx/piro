@@ -2,12 +2,12 @@
 
 @section('content')
 
-    <x-headline headline="Tasks"/>
+    <x-headline headline="Users"/>
 
     <div class="panel panel-inverse">
 
         <div class="panel-heading">
-            <h4 class="panel-title">Panel Title here</h4>
+            <h4 class="panel-title"></h4>
             <div class="panel-heading-btn">
                 <a href="#" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i
                         class="fa fa-expand"></i></a>
@@ -23,7 +23,7 @@
 
             <div class="col-lg-12 margin-tb">
                 <a class="btn btn-success btn-sm mb-3"
-                   href="{{ route('tasks.create') }}"> {{ __('Create New Task') }}</a>
+                   href="{{ route('users.create') }}"> {{ __('Create New User') }}</a>
             </div>
 
             @if ($message = Session::get('success'))
@@ -37,36 +37,36 @@
 
                 <tr>
                     <th>{{ __('No') }}</th>
-                    <th>{{ __('Task ID') }}</th>
-                    <th>{{ __('Title') }}</th>
-                    <th>{{ __('User') }}</th>
-                    <th>{{ __('Product') }}</th>
-                    <th>{{ __('Version') }}</th>
-                    <th>{{ __('Prio') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Type') }}</th>
+                    <th>{{ __('User ID') }}</th>
+                    <th>{{ __('Lastname') }}</th>
+                    <th>{{ __('Firstname') }}</th>
+                    <th>{{ __('Job Title') }}</th>
+                    <th>{{ __('Department') }}</th>
+                    <th>{{ __('Location') }}</th>
+                    <th>{{ __('Email') }}</th>
                     <th>{{ __('Created at') }}</th>
                 </tr>
+
                 </thead>
                 <tbody>
-                @foreach ($tasks as $task)
+
+                @php ($i = 0)
+
+                @foreach ($users as $user)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td><a href="{{ route('tasks.show', $task->task_hash) }}">{{ $task->task_id }}</a></td>
-                        <td>{{ $task->title }}</td>
-                        <td>{{ $task->user_hash }}</td>
-                        <td>{{ $task->product_hash }}</td>
-                        <td>{{ $task->version }}</td>
-                        <td>{{ $task->prio_hash }}</td>
-                        <td>{{ $task->status_hash }}</td>
-                        <td>{{ $task->type_hash }}</td>
-                        <td>{{ germanDateTime($task->created_at) }}</td>
+                        <td><a href="{{ route('users.show', $user->user_hash) }}">{{ $user->user_id }}</a></td>
+                        <td>{{ $user->lastname }}</td>
+                        <td>{{ $user->firstname }}</td>
+                        <td>{{ $user->job_title }}</td>
+                        <td>{{ $user->department }}</td>
+                        <td>{{ $user->location }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ germanDateTime($user->created_at) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-
-
 
         </div>
     </div>
