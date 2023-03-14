@@ -31,7 +31,7 @@
                     <p>{{ $message }}</p>
                 </div>
             @endif
-
+            @php($i = 0)
             <table id="datatable" class="table table-bordered">
                 <thead>
 
@@ -54,7 +54,10 @@
                         <td>{{ ++$i }}</td>
                         <td><a href="{{ route('tasks.show', $task->task_hash) }}">{{ $task->task_id }}</a></td>
                         <td>{{ $task->title }}</td>
-                        <td>{{ $task->user_hash }}</td>
+                        <td>
+                            @php ($user = \App\Models\User::where('user_hash', $task->user_hash)->first())
+                            {{ $user->lastname }}, {{ $user->firstname}}<br>{{$user->department}}
+                        </td>
                         <td>{{ $task->product_hash }}</td>
                         <td>{{ $task->version }}</td>
                         <td>{{ $task->prio_hash }}</td>
@@ -62,6 +65,7 @@
                         <td>{{ $task->type_hash }}</td>
                         <td>{{ germanDateTime($task->created_at) }}</td>
                     </tr>
+
                 @endforeach
                 </tbody>
             </table>

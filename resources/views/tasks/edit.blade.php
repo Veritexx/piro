@@ -42,9 +42,20 @@
                     {{-- User --}}
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>{{ __('User') }}</strong>
-                            <input type="text" name="user" value="{{ $task->user_hash }}"
-                                   class="form-control form-control-sm" maxlength="200">
+                            <label for="user"><strong>{{ __('User') }}</strong></label>
+                            <select name="user" id="user" class="form-control form-control-sm">
+                                <option value="">{{ __('please select...') }}</option>
+                                @if (isset($users))
+                                    @foreach ($users as $user)
+                                        @if($user->user_hash == $task->user_hash)
+                                            <option value="{{ $user->user_hash }}" selected>{{ $user->lastname }}, {{ $user->firstname }}</option>
+                                        @else
+
+                                        <option value="{{ $user->user_hash }}">{{ $user->lastname }}, {{ $user->firstname }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
                         </div>
                     </div>
 

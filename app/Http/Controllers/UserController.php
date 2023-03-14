@@ -52,6 +52,7 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->job_title = $request->job_title;
         $user->department = $request->department;
+        $user->company = $request->company;
         $user->location = $request->location;
         $user->email = $request->email;
         $user->description = $request->description;
@@ -109,6 +110,7 @@ class UserController extends Controller
             'firstname' => $request->firstname,
             'job_title' => $request->job_title,
             'department' => $request->department,
+            'company' => $request->company,
             'location' => $request->location,
             'email' => $request->email,
             'description' => $request->description
@@ -127,7 +129,7 @@ class UserController extends Controller
      */
     public function destroy($hash)
     {
-        $user = Task::where('user_hash', $hash)->first();
+        $user = User::where('user_hash', $hash)->first();
         $user->delete();
 
         return redirect()->route('users.index')

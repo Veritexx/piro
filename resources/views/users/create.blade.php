@@ -69,6 +69,14 @@
                         </div>
                     </div>
 
+                    {{-- Company --}}
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="company"> <strong>{{ __('Company') }}</strong></label>
+                            <input type="text" name="company" id="company" class="form-control form-control-sm" maxlength="200">
+                        </div>
+                    </div>
+
                     {{-- Location --}}
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">

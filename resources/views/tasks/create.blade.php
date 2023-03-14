@@ -37,19 +37,31 @@
                         </div>
                     </div>
 
+
+
                     {{-- User --}}
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="user"> <strong>{{ __('User') }}</strong></label>
-                            <input type="text" name="user" id="user" class="form-control form-control-sm" maxlength="200">
+                            <select name="user" id="user" class="form-control form-control-sm">
+                                <option value="">{{ __('please select...') }}</option>
+                                @if (isset($users))
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->user_hash }}">{{ $user->lastname }}
+                                            , {{ $user->firstname }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
                         </div>
                     </div>
+
 
                     {{-- Product --}}
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="product"> <strong>{{ __('Product') }}</strong></label>
-                            <input type="text" name="product" id="product" class="form-control form-control-sm" maxlength="200">
+                            <input type="text" name="product" id="product" class="form-control form-control-sm"
+                                   maxlength="200">
                         </div>
                     </div>
 
@@ -57,7 +69,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="version"> <strong>{{ __('Version') }}</strong></label>
-                            <input type="text" name="version" id="version" class="form-control form-control-sm" maxlength="200">
+                            <input type="text" name="version" id="version" class="form-control form-control-sm"
+                                   maxlength="200">
                         </div>
                     </div>
 
@@ -65,7 +78,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="prio"> <strong>{{ __('Prio') }}</strong></label>
-                            <input type="text" name="prio" id="prio" class="form-control form-control-sm" maxlength="200">
+                            <input type="text" name="prio" id="prio" class="form-control form-control-sm"
+                                   maxlength="200">
                         </div>
                     </div>
 
@@ -73,7 +87,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="status"> <strong>{{ __('Status') }}</strong></label>
-                            <input type="text" name="status" id="status" class="form-control form-control-sm" maxlength="200">
+                            <input type="text" name="status" id="status" class="form-control form-control-sm"
+                                   maxlength="200">
                         </div>
                     </div>
 
@@ -81,7 +96,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="type"> <strong>{{ __('Type') }}</strong></label>
-                            <input type="text" name="type" id="type" class="form-control form-control-sm" maxlength="200">
+                            <input type="text" name="type" id="type" class="form-control form-control-sm"
+                                   maxlength="200">
                         </div>
                     </div>
 
@@ -89,7 +105,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="description"> <strong>{{ __('Description') }}</strong></label>
-                            <textarea id="description" class="form-control" style="height:150px" name="description"></textarea>
+                            <textarea id="description" class="form-control" style="height:150px"
+                                      name="description"></textarea>
                         </div>
                     </div>
 

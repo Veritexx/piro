@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -26,7 +27,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $users = User::get();
+
+        return view('tasks.create', compact('users'));
     }
 
     /**
@@ -85,8 +88,9 @@ class TaskController extends Controller
     public function edit($hash)
     {
         $task = Task::where('task_hash', $hash)->first();
+        $users = User::get();
 
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', compact('task','users'));
     }
 
     /**

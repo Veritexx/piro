@@ -34,10 +34,11 @@
                 </div>
 
                 {{-- User --}}
+                @php ($user = \App\Models\User::where('user_hash', $task->user_hash)->first())
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <label for="user"> <strong>{{ __('User') }}</strong></label>
-                        <input type="text" name="user" id="user" value="{{ $task->user_hash }}"
+                        <input type="text" name="user" id="user" value="{{ $user->lastname }}, {{ $user->firstname }}"
                                class="form-control form-control-sm"
                                disabled>
                     </div>
