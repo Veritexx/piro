@@ -29,7 +29,9 @@
     <div id="header" class="app-header">
 
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> <b>Color</b> Admin</a>
+            <img src="{{ asset('img/logos/logo.png') }}" alt="Logo" class="img-fluid p-1 " style="width: 80px; ">
+            <a href="{{ route('dashboards.index') }}" </a>
+
             <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
